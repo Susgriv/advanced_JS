@@ -21,3 +21,5 @@ const renderPage = list => {
 };
 
 renderPage(products);
+
+//fixes
