@@ -17,10 +17,7 @@ const renderProduct = (elem, img = './js/websiteplanet-dummy-540X400.png') => {
 };
 
 const renderPage = list => {
-    const productsList = list.map(item => renderProduct(item)).join('');
-    // console.log(productsList);
-    document.querySelector('.products').innerHTML = productsList;
+    document.querySelector('.products').innerHTML = list.map(item => renderProduct(item)).join('');
 };
 
 renderPage(products);
-
