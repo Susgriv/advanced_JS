@@ -7,29 +7,32 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<form action="#" id="form" class="form">
-  <div>
-    <label> Name
-      <input class="input" type="text" name="name" id="name">
+<form action="#" class="form">
+  <div class="wrp">
+    <label class="label"> Name <br>
+      <input class="input" type="text" name="name">
     </label>
   </div>
-  <div>
-    <label> Phone
-      <input class="input" type="tel" name="Phone" id="Phone">
+  <br>
+  <div class="wrp">
+    <label> Phone <br>
+      <input class="input" type="tel" name="phone">
     </label>
   </div>
-  <div>
-    <label> Email
-      <input class="input" type="email" name="email" id="email">
+  <br>
+  <div class="wrp">
+    <label> Email <br>
+      <input class="input" type="email" name="email">
     </label>
   </div>
-  <button id="val-btn" class="btn">Отправить</button>
+  <br>
+  <button class="btn">Отправить</button>
 </form>
 <script src="main.js"></script>
 <script>
   window.onload = () => {
     document.querySelector('.form').addEventListener('submit' , e => {
-      let valid = new Validator('form');
+      let valid = new Validator('form');  //  Новый экземпляр класса Validator
       if(!valid.valid) {
         e.preventDefault();
       }

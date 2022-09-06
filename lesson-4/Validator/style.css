@@ -29,3 +29,8 @@
 .valid {
     border: 2px solid green;
 }
+.wrp {
+    display: inline-block;
+    border-bottom: 4px solid #a9a9a9;
+    margin-bottom: 30px;
+}
