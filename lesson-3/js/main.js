@@ -1,4 +1,4 @@
-const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
+const API = '../../../../Загрузки/online-store-api-master/responses';
 
 class ProductsList {
     constructor(container = '.products') {
