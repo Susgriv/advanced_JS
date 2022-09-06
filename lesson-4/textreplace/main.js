@@ -9,7 +9,7 @@ btnEl.addEventListener('click', () => {
 });
 
 btnEl2.addEventListener('click', () => {
-    pEl.textContent = pEl.textContent.replace(/\s'|'\s/g, '"');
+    pEl.textContent = pEl.textContent.replace(/\B'|'\B/g, '"');
 });
 
 btnReset.addEventListener('click', () => location.reload());
