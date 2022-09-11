@@ -1,5 +1,3 @@
-const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
-
 const app = new Vue({
     el: '#app',
     data: {
@@ -10,7 +8,6 @@ const app = new Vue({
             return fetch(url)
                 .then(result => result.json())
                 .catch(error => {
-                    // console.log(error)
                     this.$refs.error.text = error;
                 })
         },
@@ -24,7 +21,6 @@ const app = new Vue({
             })
                 .then(result => result.json())
                 .catch(error => {
-                    // console.log(error)
                     this.$refs.error.text = error;
                 })
         },
@@ -38,16 +34,16 @@ const app = new Vue({
             })
                 .then(result => result.json())
                 .catch(error => {
-                    // console.log(error)
                     this.$refs.error.text = error;
                 })
         },
-        deleteJson(url) {
+        deleteJson(url, data) {
             return fetch(url, {
                 method: 'DELETE',
                 headers: {
                     "Content-Type": "application/json"
                 },
+                body: JSON.stringify(data)
             })
                 .then(result => result.json())
                 .catch(error => {
@@ -110,16 +106,16 @@ const app = new Vue({
 //     }
 // }
 // class Item {
-//     constructor(el, img = 'https://placehold.it/200x150'){
+//     constructor(el, img1 = 'https://placehold.it/200x150'){
 //         this.product_name = el.product_name;
 //         this.price = el.price;
-//         this.img = img;
+//         this.img1 = img1;
 //         this.id_product = el.id_product
 //     }
 //
 //     render(){
 //         return `<div class="product-item" data-id="${this.id_product}">
-//                     <img src="${this.img}" alt="Some img">
+//                     <img1 src="${this.img1}" alt="Some img1">
 //                     <div class="desc">
 //                         <h3>${this.product_name}</h3>
 //                         <p>${this.price} $</p>
@@ -127,7 +123,7 @@ const app = new Vue({
 //                         data-id="${this.id_product}"
 //                         data-price="${this.price}"
 //                         data-name="${this.product_name}"
-//                         data-img="${this.img}">
+//                         data-img1="${this.img1}">
 //                         Купить
 // </button>
 //                     </div>
@@ -224,14 +220,14 @@ const app = new Vue({
 // }
 //
 // class CartItem extends Item{
-//     constructor(el, img = 'https://placehold.it/50x100'){
-//         super(el, img);
+//     constructor(el, img1 = 'https://placehold.it/50x100'){
+//         super(el, img1);
 //         this.quantity = el.quantity;
 //     }
 //     render(){
 //         return `<div class="cart-item" data-id="${this.id_product}">
 //     <div class="product-bio">
-//         <img src="${this.img}" alt="Some image">
+//         <img1 src="${this.img1}" alt="Some image">
 //         <div class="product-desc">
 //             <p class="product-title">${this.product_name}</p>
 //             <p class="product-quantity">Quantity: ${this.quantity}</p>

@@ -11,6 +11,7 @@ Vue.component('cart', {
         this.$parent.getJson(`/api/cart`)
             .then(data => {
                 for (let item of data.contents) {
+                    item.imgProduct = `/img1/products/${item.id_product}.jpg`;
                     this.$data.cartItems.push(item);
                 }
             });
@@ -56,7 +57,7 @@ Vue.component('cart', {
     template: `<div>
 <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
         <div class="cart-block" v-show="showCart">
-            <cart-item v-for="item of cartItems" :key="item.id_product" :img="item.img" :cart-item="item" @remove="remove">
+            <cart-item v-for="item of cartItems" :key="item.id_product" :img="item.imgProduct" :cart-item="item" @remove="remove">
             </cart-item>
         </div>
         </div>

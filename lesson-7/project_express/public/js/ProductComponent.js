@@ -1,29 +1,29 @@
 Vue.component('products', {
-   data(){
-       return {
-           filtered: [],
-           products: [],
-           imgProduct: 'img/products'
-       }
-   },
-    mounted(){
+    data() {
+        return {
+            filtered: [],
+            products: [],
+        }
+    },
+    mounted() {
         this.$parent.getJson(`/api/products`)
             .then(data => {
-                for (let item of data){
+                for (let item of data) {
+                    item.imgProduct = `img1/products/${item.id_product}.jpg`;
                     this.$data.products.push(item);
                     this.$data.filtered.push(item);
                 }
             });
     },
     methods: {
-        filter(userSearch){
+        filter(userSearch) {
             let regexp = new RegExp(userSearch, 'i');
             this.filtered = this.products.filter(el => regexp.test(el.product_name));
         }
     },
-   template: `<div class="products">
+    template: `<div class="products">
                 <product v-for="item of filtered"  
-                :img="item.img"
+                :img="item.imgProduct"
                 :product="item"
                 @add-product="$parent.$refs.cart.addProduct"></product>
                </div>`
