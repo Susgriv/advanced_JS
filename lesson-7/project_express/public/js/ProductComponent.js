@@ -9,7 +9,7 @@ Vue.component('products', {
         this.$parent.getJson(`/api/products`)
             .then(data => {
                 for (let item of data) {
-                    item.imgProduct = `img1/products/${item.id_product}.jpg`;
+                    item.img = `img/products/${item.id_product}.jpg`;
                     this.$data.products.push(item);
                     this.$data.filtered.push(item);
                 }
@@ -23,7 +23,8 @@ Vue.component('products', {
     },
     template: `<div class="products">
                 <product v-for="item of filtered"  
-                :img="item.imgProduct"
+                :key="item.id_product"
+                :img="item.img"
                 :product="item"
                 @add-product="$parent.$refs.cart.addProduct"></product>
                </div>`

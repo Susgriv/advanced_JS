@@ -1,14 +1,5 @@
 {
     "amount": 46600,
     "countGoods": 2,
-    "contents": [
-        {
-            "quantity": 1,
-            "id_product": 1,
-            "product_name": "Keyboard",
-            "price": 1600,
-            "img": "1.jpg",
-            "imgProduct": "img1/products/1.jpg"
-        }
-    ]
+    "contents": []
 }

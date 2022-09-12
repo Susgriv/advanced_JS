@@ -1,5 +1,3 @@
-// const API = 'https://raw.githubusercontent.com/GeekBrainsTutorial/online-store-api/master/responses';
-
 Vue.component('cart', {
     data() {
         return {
@@ -11,8 +9,7 @@ Vue.component('cart', {
         this.$parent.getJson(`/api/cart`)
             .then(data => {
                 for (let item of data.contents) {
-                    item.imgProduct = `/img1/products/${item.id_product}.jpg`;
-                    this.$data.cartItems.push(item);
+                    this.cartItems.push(item);
                 }
             });
     },
@@ -42,22 +39,23 @@ Vue.component('cart', {
                     .then(data => {
                         if (data.result === 1) {
                             item.quantity--;
-                        } else {
-                            this.$parent.deleteJson(`/api/cart/${item.id_product}`)
-                                .then(data => {
-                                    if (data.result === 1) {
-                                        this.cartItems.splice(this.cartItems.indexOf(item), 1);
-                                    }
-                                })
+                        }
+                    })
+            } else {
+                this.$parent.deleteJson(`/api/cart/${item.id_product}`)
+                    .then(data => {
+                        if (data.result === 1) {
+                            this.cartItems.splice(this.cartItems.indexOf(item), 1);
                         }
                     })
             }
-        },
+        }
     },
-    template: `<div>
+    template:
+        `<div>
 <button class="btn-cart" type="button" @click="showCart = !showCart">Корзина</button>
         <div class="cart-block" v-show="showCart">
-            <cart-item v-for="item of cartItems" :key="item.id_product" :img="item.imgProduct" :cart-item="item" @remove="remove">
+            <cart-item v-for="item of cartItems" :key="item.id_product" :img="item.img" :cart-item="item" @remove="remove">
             </cart-item>
         </div>
         </div>
@@ -69,14 +67,15 @@ Vue.component('cart-item', {
     template: `
     <div class="cart-item">
                     <div class="product-bio">
-                        <img :src="img" alt="Some img" class="product_img">
+                        <img :src="cartItem.img" alt="Some img" class="product_img">
                         <div class="product-desc">
                             <div class="product-title">{{ cartItem.product_name }}</div>
-                            <div class="product-quantity">Quantity: {{ cartItem.quantity }}</div>
-                            <div class="product-single-price">$ {{ cartItem.price }} each</div>
+                            <div class="product-quantity">Количество: {{ cartItem.quantity }}</div>
+                            <div class="product-single-price">Цена: {{ cartItem.price }} $</div>
                         </div>
                     </div>
                     <div class="right-block">
+                        <p>Сумма:</p>
                         <div class="product-price">{{cartItem.quantity*cartItem.price}}</div>
                         <button class="del-btn" @click="$emit('remove', cartItem)">&times;</button>
                     </div>
